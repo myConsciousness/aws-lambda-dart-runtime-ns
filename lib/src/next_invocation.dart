@@ -28,9 +28,9 @@ final class NextInvocation {
   final String traceId;
 
   /// Client context is the context that is provided to the function.
-  final String clientContext;
+  final String? clientContext;
 
   /// Cognito identity is the identity that maybe is used for authorizing
   /// the request.
-  final String cognitoIdentity;
+  final String? cognitoIdentity;
 }

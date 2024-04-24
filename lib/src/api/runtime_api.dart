@@ -11,8 +11,8 @@ import '../invocation_result.dart';
 import '../next_invocation.dart';
 
 const _kRuntimeRequestId = 'lambda-runtime-aws-request-id';
-const _kRuntimeDeadlineMs = 'lambda-runtime-aws-deadline-ms';
-const _kRuntimeInvokedFunctionArn = 'lambda-runtime-invoked-functions-arn';
+const _kRuntimeDeadlineMs = 'lambda-runtime-deadline-ms';
+const _kRuntimeInvokedFunctionArn = 'lambda-runtime-invoked-function-arn';
 const _kRuntimeTraceId = 'lambda-runtime-trace-id';
 const _kRuntimeClientContext = 'lambda-runtime-client-context';
 const _kRuntimeCognitoIdentity = 'lambda-runtime-cognito-identity';
@@ -43,17 +43,14 @@ final class RuntimeApi {
       ),
     );
 
-    print(response.headers);
-    print(response.body);
-
     return NextInvocation(
       event: jsonDecode(response.body),
       requestId: response.headers[_kRuntimeRequestId]!,
       invokedFunctionArn: response.headers[_kRuntimeInvokedFunctionArn]!,
       deadlineMs: response.headers[_kRuntimeDeadlineMs]!,
       traceId: response.headers[_kRuntimeTraceId]!,
-      clientContext: response.headers[_kRuntimeClientContext]!,
-      cognitoIdentity: response.headers[_kRuntimeCognitoIdentity]!,
+      clientContext: response.headers[_kRuntimeClientContext],
+      cognitoIdentity: response.headers[_kRuntimeCognitoIdentity],
     );
   }
 
