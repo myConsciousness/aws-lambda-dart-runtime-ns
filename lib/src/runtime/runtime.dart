@@ -40,7 +40,7 @@ final class AwsLambdaRuntime {
     return false;
   }
 
-  Future<void> invoke() async {
+  void invoke() async {
     if (_handlers.isEmpty) {
       throw RuntimeStateError(
         'No handlers could be found to be invoked. '
@@ -48,8 +48,9 @@ final class AwsLambdaRuntime {
       );
     }
 
-    NextInvocation? nextInvocation;
-    while (true) {
+    do {
+      NextInvocation? nextInvocation;
+
       try {
         nextInvocation = await _client.getNextInvocation();
 
@@ -62,11 +63,13 @@ final class AwsLambdaRuntime {
         await _client.postInvocationResponse(result);
       } catch (e, s) {
         await _client.postInvocationError(
-          requestId: nextInvocation?.requestId ?? '',
+          requestId: nextInvocation!.requestId,
           error: InvocationError(e, s),
         );
       }
-    }
+
+      nextInvocation = null;
+    } while (true);
   }
 
   FunctionAction _getFunction(final RuntimeContext context) {
