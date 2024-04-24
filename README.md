@@ -6,11 +6,11 @@
 
 ---
 
-This package is based on the official [aws-lambda-dart-runtime](https://github.com/myConsciousness/aws-lambda-dart-runtime).
-It is a restructured version of the outdated official [aws-lambda-dart-runtime](https://github.com/myConsciousness/aws-lambda-dart-runtime) adapted to the latest Dart SDK to make it easier to maintain.
+This package is based on the official [aws-lambda-dart-runtime](https://github.com/awslabs/aws-lambda-dart-runtime).
+It is a restructured version of the outdated official [aws-lambda-dart-runtime](https://github.com/awslabs/aws-lambda-dart-runtime) adapted to the latest Dart SDK to make it easier to maintain.
 
 Thanks to [katallaxie](https://github.com/katallaxie) and [AWS Labs](https://github.com/awslabs)
-involved in the development of the [original stuff](https://github.com/myConsciousness/aws-lambda-dart-runtime)!
+involved in the development of the [original stuff](https://github.com/awslabs/aws-lambda-dart-runtime)!
 
 You can read the [official document](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/README.md) too!
 
