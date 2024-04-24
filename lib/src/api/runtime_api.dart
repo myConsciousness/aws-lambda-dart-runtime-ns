@@ -43,6 +43,9 @@ final class RuntimeApi {
       ),
     );
 
+    print(response.headers);
+    print(response.body);
+
     return NextInvocation(
       event: jsonDecode(response.body),
       requestId: response.headers[_kRuntimeRequestId]!,

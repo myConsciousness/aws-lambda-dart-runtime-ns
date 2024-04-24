@@ -48,9 +48,8 @@ final class AwsLambdaRuntime {
       );
     }
 
-    do {
-      NextInvocation? nextInvocation;
-
+    NextInvocation? nextInvocation;
+    while (true) {
       try {
         nextInvocation = await _client.getNextInvocation();
 
@@ -63,13 +62,11 @@ final class AwsLambdaRuntime {
         await _client.postInvocationResponse(result);
       } catch (e, s) {
         await _client.postInvocationError(
-          requestId: nextInvocation!.requestId,
+          requestId: nextInvocation?.requestId ?? '',
           error: InvocationError(e, s),
         );
       }
-
-      nextInvocation = null;
-    } while (true);
+    }
   }
 
   FunctionAction _getFunction(final RuntimeContext context) {
