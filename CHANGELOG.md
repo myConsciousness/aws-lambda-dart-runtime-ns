@@ -1,5 +1,9 @@
 # Release Note
 
+## 0.0.4
+
+- Minor changes.
+
 ## 0.0.3
 
 - Fix document.

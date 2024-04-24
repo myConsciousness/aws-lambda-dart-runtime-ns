@@ -22,15 +22,15 @@ final class NextInvocation {
 
   /// Deadline milliseconds is the setting for ultimate cancellation
   /// of the invocation.
-  final String deadlineMs;
+  final String? deadlineMs;
 
   /// Tracing id is the identifier for tracing like X-Ray.
-  final String traceId;
+  final String? traceId;
 
   /// Client context is the context that is provided to the function.
-  final String clientContext;
+  final String? clientContext;
 
   /// Cognito identity is the identity that maybe is used for authorizing
   /// the request.
-  final String cognitoIdentity;
+  final String? cognitoIdentity;
 }

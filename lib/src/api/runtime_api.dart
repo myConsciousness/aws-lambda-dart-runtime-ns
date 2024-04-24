@@ -47,10 +47,10 @@ final class RuntimeApi {
       event: jsonDecode(response.body),
       requestId: response.headers[_kRuntimeRequestId]!,
       invokedFunctionArn: response.headers[_kRuntimeInvokedFunctionArn]!,
-      deadlineMs: response.headers[_kRuntimeDeadlineMs]!,
-      traceId: response.headers[_kRuntimeTraceId]!,
-      clientContext: response.headers[_kRuntimeClientContext]!,
-      cognitoIdentity: response.headers[_kRuntimeCognitoIdentity]!,
+      deadlineMs: response.headers[_kRuntimeDeadlineMs],
+      traceId: response.headers[_kRuntimeTraceId],
+      clientContext: response.headers[_kRuntimeClientContext],
+      cognitoIdentity: response.headers[_kRuntimeCognitoIdentity],
     );
   }
 
