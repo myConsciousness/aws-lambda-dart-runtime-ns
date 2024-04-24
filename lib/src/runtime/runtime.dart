@@ -62,7 +62,7 @@ final class AwsLambdaRuntime {
         await _client.postInvocationResponse(result);
       } catch (e, s) {
         await _client.postInvocationError(
-          requestId: nextInvocation!.requestId,
+          requestId: nextInvocation?.requestId ?? '',
           error: InvocationError(e, s),
         );
       }
