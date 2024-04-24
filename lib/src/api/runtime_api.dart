@@ -37,7 +37,7 @@ final class RuntimeApi {
   /// (see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-api.html).
   Future<NextInvocation> getNextInvocation() async {
     final response = await http.get(
-      Uri.https(
+      Uri.http(
         _authority,
         '/$_kRuntimeApiVersion/runtime/invocation/next',
       ),
@@ -47,16 +47,16 @@ final class RuntimeApi {
       event: jsonDecode(response.body),
       requestId: response.headers[_kRuntimeRequestId]!,
       invokedFunctionArn: response.headers[_kRuntimeInvokedFunctionArn]!,
-      deadlineMs: response.headers[_kRuntimeDeadlineMs],
-      traceId: response.headers[_kRuntimeTraceId],
-      clientContext: response.headers[_kRuntimeClientContext],
-      cognitoIdentity: response.headers[_kRuntimeCognitoIdentity],
+      deadlineMs: response.headers[_kRuntimeDeadlineMs]!,
+      traceId: response.headers[_kRuntimeTraceId]!,
+      clientContext: response.headers[_kRuntimeClientContext]!,
+      cognitoIdentity: response.headers[_kRuntimeCognitoIdentity]!,
     );
   }
 
   Future<void> postInvocationResponse(final InvocationResult result) async =>
       await http.post(
-        Uri.https(
+        Uri.http(
           _authority,
           '/$_kRuntimeApiVersion/runtime/invocation/${result.requestId}/response',
         ),
@@ -68,7 +68,7 @@ final class RuntimeApi {
     required final InvocationError error,
   }) async =>
       await http.post(
-        Uri.https(
+        Uri.http(
           _authority,
           '/$_kRuntimeApiVersion/runtime/invocation/$requestId/error',
         ),
