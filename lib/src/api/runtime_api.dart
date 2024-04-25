@@ -33,8 +33,8 @@ final class RuntimeApi {
   /// The authority of AWS Lambda Runtime API.
   final String _authority;
 
-  /// Get the next invocation from the AWS Lambda Runtime Interface
-  /// (see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-api.html).
+  /// Runtime makes this HTTP request when it is ready to receive
+  /// and process a new invoke.
   Future<NextInvocation> getNextInvocation() async {
     final response = await http.get(
       Uri.http(
@@ -54,15 +54,19 @@ final class RuntimeApi {
     );
   }
 
+  /// Runtime makes this request in order to submit a response.
   Future<void> postInvocationResponse(final InvocationResult result) async =>
       await http.post(
         Uri.http(
           _authority,
           '/$_kRuntimeApiVersion/runtime/invocation/${result.requestId}/response',
         ),
+        headers: _getPostHeaders(),
         body: jsonEncode(result.body),
       );
 
+  /// Non-recoverable initialization error. Runtime should exit after reporting
+  /// the error. Error will be served in response to the first invoke.
   Future<void> postInvocationError({
     required final String requestId,
     required final InvocationError error,
@@ -72,6 +76,10 @@ final class RuntimeApi {
           _authority,
           '/$_kRuntimeApiVersion/runtime/invocation/$requestId/error',
         ),
+        headers: _getPostHeaders(),
         body: jsonEncode(error.toJson()),
       );
+
+  Map<String, String> _getPostHeaders() =>
+      const {'Content-type': 'application/json'};
 }
