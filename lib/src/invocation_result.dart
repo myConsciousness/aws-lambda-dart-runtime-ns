@@ -4,7 +4,7 @@ final class InvocationResult {
   const InvocationResult({
     required this.requestId,
     required this.body,
-  }) : assert(body != null);
+  });
 
   /// The Id of the request in the Lambda Runtime Interface.
   /// This is used to associate the result of the handler with
@@ -13,5 +13,5 @@ final class InvocationResult {
 
   /// The result of the handler execution. This can contain
   /// any json-encodable data type.
-  final dynamic body;
+  final Map<String, dynamic> body;
 }
