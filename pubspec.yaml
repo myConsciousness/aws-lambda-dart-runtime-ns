@@ -1,6 +1,6 @@
 name: aws_lambda_dart_runtime_ns
 description: A powerful runtime to build AWS Lambda functions in Dart with native AWS events. Sound null safety.
-version: 0.0.12
+version: 0.0.13
 repository: https://github.com/myConsciousness/aws-lambda-dart-runtime-ns
 issue_tracker: https://github.com/myConsciousness/aws-lambda-dart-runtime-ns/issues
 funding:

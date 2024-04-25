@@ -1,5 +1,9 @@
 # Release Note
 
+## 0.0.13
+
+- Add `invokeAwsLambdaRuntime` function.
+
 ## 0.0.12
 
 - Minor changes.

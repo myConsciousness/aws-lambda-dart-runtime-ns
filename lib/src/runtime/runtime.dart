@@ -7,6 +7,19 @@ import 'errors/runtime_exception.dart';
 import 'errors/runtime_state_error.dart';
 import 'handler.dart';
 
+/// Shortcut to safely run [AwsLambdaRuntime].
+Future<void> invokeAwsLambdaRuntime(
+  final List<FunctionHandler> handlers,
+) async {
+  final runtime = AwsLambdaRuntime();
+
+  for (final handler in handlers) {
+    runtime.addHandler(handler);
+  }
+
+  await runtime.invoke();
+}
+
 final class AwsLambdaRuntime {
   AwsLambdaRuntime._(final RuntimeApi client) : _client = client;
 
