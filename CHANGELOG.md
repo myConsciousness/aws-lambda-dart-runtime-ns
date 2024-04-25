@@ -1,5 +1,9 @@
 # Release Note
 
+## 0.0.12
+
+- Minor changes.
+
 ## 0.0.11
 
 - Minor changes.
