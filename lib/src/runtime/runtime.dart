@@ -18,7 +18,7 @@ final class AwsLambdaRuntime {
   final _handlers = <FunctionHandler>[];
 
   /// Add a function handler.
-  void addHandler(final FunctionHandler handler) {
+  AwsLambdaRuntime addHandler(final FunctionHandler handler) {
     if (hasHandler(handler.name)) {
       throw RuntimeStateError(
         'The handler "${handler.name}" has already been added.',
@@ -26,6 +26,8 @@ final class AwsLambdaRuntime {
     }
 
     _handlers.add(handler);
+
+    return this;
   }
 
   /// Returns true if this runtime has a handler associated with handler [name],
@@ -40,7 +42,7 @@ final class AwsLambdaRuntime {
     return false;
   }
 
-  void invoke() async {
+  Future<void> invoke() async {
     if (_handlers.isEmpty) {
       throw RuntimeStateError(
         'No handlers could be found to be invoked. '
@@ -60,11 +62,13 @@ final class AwsLambdaRuntime {
         );
 
         await _client.postInvocationResponse(result);
-      } catch (e, s) {
-        await _client.postInvocationError(
-          requestId: nextInvocation!.requestId,
-          error: InvocationError(e, s),
-        );
+      } catch (error, stackTrace) {
+        if (nextInvocation != null) {
+          await _client.postInvocationError(
+            requestId: nextInvocation.requestId,
+            error: InvocationError(error, stackTrace),
+          );
+        }
       }
     }
   }
