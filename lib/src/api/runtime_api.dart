@@ -60,7 +60,7 @@ final class RuntimeApi {
           _authority,
           '/$_kRuntimeApiVersion/runtime/invocation/${result.requestId}/response',
         ),
-        body: result.body,
+        body: jsonEncode(result.body),
       );
 
   Future<void> postInvocationError({
@@ -72,6 +72,6 @@ final class RuntimeApi {
           _authority,
           '/$_kRuntimeApiVersion/runtime/invocation/$requestId/error',
         ),
-        body: error.toJson(),
+        body: jsonEncode(error.toJson()),
       );
 }

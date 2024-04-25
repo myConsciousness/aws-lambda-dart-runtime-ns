@@ -1,4 +1,4 @@
-# Dart Runtime for AWS Lambda (Sound Null Safety)
+# Dart Runtime for AWS Lambda **(Sound Null Safety)**
 
 <p align="center">
    A 🎯 <a href="https://dart.dev/">Dart</a> Runtime for ƛ <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>
@@ -51,8 +51,8 @@ void main() => AwsLambdaRuntime()
       return InvocationResult(
         requestId: context.requestId,
         body: {
-          'statusCode': 200,
           'message': 'Hello, World!',
+          ...event,
         },
       );
     },

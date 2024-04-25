@@ -9,8 +9,8 @@ void main() => AwsLambdaRuntime()
       return InvocationResult(
         requestId: context.requestId,
         body: {
-          'statusCode': 200,
           'message': 'Hello, World!',
+          ...event,
         },
       );
     },
