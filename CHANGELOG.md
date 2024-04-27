@@ -3,6 +3,7 @@
 ## 0.0.13
 
 - Add `invokeAwsLambdaRuntime` function.
+- Minor optimization.
 
 ## 0.0.12
 

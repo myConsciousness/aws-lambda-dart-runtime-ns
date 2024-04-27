@@ -43,35 +43,30 @@ dart pub get
 import 'package:aws_lambda_dart_runtime_ns/aws_lambda_dart_runtime_ns.dart';
 
 Future<void> main() async => await invokeAwsLambdaRuntime([
-      _sayHelloFunction,
-      _sayWorldFunction,
+      _sayHelloWorldFunction,
+      _doSomethingFunction,
     ]);
 
-/// GET endpoint that just returns “Hello".
-FunctionHandler get _sayHelloFunction => FunctionHandler(
-      name: 'main.hello',
+/// GET endpoint that just returns "Hello, World!".
+FunctionHandler get _sayHelloWorldFunction => FunctionHandler(
+      name: 'main.helloWorld',
       action: (context, event) {
-        // Do something here...
-
         return InvocationResult(
           requestId: context.requestId,
           body: {
-            'message': 'Hello',
+            'message': 'Hello, World!',
           },
         );
       },
     );
 
-/// GET endpoint that just returns "World".
-FunctionHandler get _sayWorldFunction => FunctionHandler(
-      name: 'main.world',
+/// POST endpoint does something.
+FunctionHandler get _doSomethingFunction => FunctionHandler(
+      name: 'main.doSomething',
       action: (context, event) {
-        return InvocationResult(
-          requestId: context.requestId,
-          body: {
-            'message': 'world',
-          },
-        );
+        // Do something here...
+
+        return InvocationResult(requestId: context.requestId);
       },
     );
 ```

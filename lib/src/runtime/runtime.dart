@@ -28,31 +28,19 @@ final class AwsLambdaRuntime {
   }
 
   final RuntimeApi _client;
-  final _handlers = <FunctionHandler>[];
+  final _handlers = <String, FunctionAction>{};
 
   /// Add a function handler.
   AwsLambdaRuntime addHandler(final FunctionHandler handler) {
-    if (hasHandler(handler.name)) {
+    if (_handlers.containsKey(handler.name)) {
       throw RuntimeStateError(
         'The handler "${handler.name}" has already been added.',
       );
     }
 
-    _handlers.add(handler);
+    _handlers[handler.name] = handler.action;
 
     return this;
-  }
-
-  /// Returns true if this runtime has a handler associated with handler [name],
-  /// otherwise false.
-  bool hasHandler(final String name) {
-    for (final handler in _handlers) {
-      if (handler.name == name) {
-        return true;
-      }
-    }
-
-    return false;
   }
 
   Future<void> invoke() async {
@@ -87,14 +75,13 @@ final class AwsLambdaRuntime {
   }
 
   FunctionAction _getFunction(final RuntimeContext context) {
-    for (final handler in _handlers) {
-      if (handler.name == context.handler) {
-        return handler.action;
-      }
+    final action = _handlers[context.handler];
+    if (action == null) {
+      throw RuntimeException(
+        'No handler with name "${context.handler}" registered in runtime!',
+      );
     }
 
-    throw RuntimeException(
-      'No handler with name "${context.handler}" registered in runtime!',
-    );
+    return action;
   }
 }

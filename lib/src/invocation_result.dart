@@ -3,7 +3,7 @@
 final class InvocationResult {
   const InvocationResult({
     required this.requestId,
-    required this.body,
+    this.body = const {},
   });
 
   /// The Id of the request in the Lambda Runtime Interface.
