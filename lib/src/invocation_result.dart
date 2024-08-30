@@ -13,5 +13,5 @@ final class InvocationResult {
 
   /// The result of the handler execution. This can contain
   /// any json-encodable data type.
-  final Map<String, dynamic> body;
+  final dynamic body;
 }
