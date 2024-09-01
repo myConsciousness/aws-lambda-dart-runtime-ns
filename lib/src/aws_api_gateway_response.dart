@@ -1,3 +1,4 @@
+// Dart imports:
 import 'dart:convert';
 
 /// API Gateway Response contains the data for a response
@@ -31,8 +32,7 @@ class AwsApiGatewayResponse {
   /// for the response.
   factory AwsApiGatewayResponse.fromJson(Map<String, dynamic> body,
       {bool? isBase64Encoded, int? statusCode, Map<String, String>? headers}) {
-    return AwsApiGatewayResponse(
-        json.encode(body), isBase64Encoded ?? false,
+    return AwsApiGatewayResponse(json.encode(body), isBase64Encoded ?? false,
         headers ?? {}, statusCode ?? 200);
   }
 
