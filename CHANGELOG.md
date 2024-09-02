@@ -1,5 +1,9 @@
 # Release Note
 
+## 0.1.0-preview.0
+
+- Add `AwsApiGatewayResponse`. ([#2](https://github.com/myConsciousness/aws-lambda-dart-runtime-ns/pull/2))
+
 ## 0.0.13
 
 - Add `invokeAwsLambdaRuntime` function.
