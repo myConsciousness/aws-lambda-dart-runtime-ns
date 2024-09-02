@@ -1,5 +1,4 @@
 import 'package:aws_lambda_dart_runtime_ns/aws_lambda_dart_runtime_ns.dart';
-import 'dart:convert';
 
 Future<void> main() async => await invokeAwsLambdaRuntime([
       _sayHelloWorldFunction,
@@ -34,17 +33,14 @@ FunctionHandler get _doSomethingFunction => FunctionHandler(
 FunctionHandler get _sayHelloWorldForApiGatewayFunction => FunctionHandler(
       name: 'main.helloWorld',
       action: (context, event) {
-        Map<String, dynamic> body = {
-          'message': 'Hello, World!',
-        };
-        bool isBase64Encoded = false;
-        Map<String, String> headers = {
-          'Content-Type': 'application/json',
-        };
-        int statusCode = 200;
         return InvocationResult(
-            requestId: context.requestId,
-            body: AwsApiGatewayResponse(
-                json.encode(body), isBase64Encoded, headers, statusCode));
+          requestId: context.requestId,
+          body: AwsApiGatewayResponse.fromJson(
+            {'message': 'Hello, World!'},
+            isBase64Encoded: false,
+            statusCode: 200,
+            headers: const {'Content-Type': 'application/json'},
+          ),
+        );
       },
     );
