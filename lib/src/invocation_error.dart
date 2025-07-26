@@ -14,8 +14,8 @@ final class InvocationError {
 
   /// Returns the JSON representation.
   Map<String, dynamic> toJson() => {
-        'errorType': 'InvocationError',
-        'errorMessage': error.toString(),
-        'stackTrace': stackTrace.toString()
-      };
+    'errorType': 'InvocationError',
+    'errorMessage': error.toString(),
+    'stackTrace': stackTrace.toString(),
+  };
 }

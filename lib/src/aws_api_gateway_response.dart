@@ -21,11 +21,11 @@ final class AwsApiGatewayResponse {
   /// Returns the JSON representation of the response. This is called by
   /// the JSON encoder to produce the response.
   Map<String, dynamic> toJson() => {
-        'body': body,
-        'isBase64Encoded': isBase64Encoded,
-        'statusCode': statusCode,
-        'headers': headers
-      };
+    'body': body,
+    'isBase64Encoded': isBase64Encoded,
+    'statusCode': statusCode,
+    'headers': headers,
+  };
 
   /// The factory creates a new [AwsApiGatewayResponse] from JSON.
   /// It optionally accepts the Base64 encoded flag and a HTTP Status Code
@@ -35,13 +35,12 @@ final class AwsApiGatewayResponse {
     bool isBase64Encoded = false,
     int statusCode = 200,
     Map<String, String> headers = const {},
-  }) =>
-      AwsApiGatewayResponse(
-        json.encode(body),
-        isBase64Encoded: isBase64Encoded,
-        statusCode: statusCode,
-        headers: headers,
-      );
+  }) => AwsApiGatewayResponse(
+    json.encode(body),
+    isBase64Encoded: isBase64Encoded,
+    statusCode: statusCode,
+    headers: headers,
+  );
 
   /// The Response that should be returned by the API Gateway for the
   /// Lambda invocation. It has a [body] which reflects the body of the HTTP

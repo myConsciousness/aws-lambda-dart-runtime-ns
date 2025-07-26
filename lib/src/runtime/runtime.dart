@@ -57,10 +57,9 @@ final class AwsLambdaRuntime {
         nextInvocation = await _client.getNextInvocation();
 
         final context = RuntimeContext.fromNextInvocation(nextInvocation);
-        final result = await _getFunction(context).call(
+        final result = await _getFunction(
           context,
-          nextInvocation.event,
-        );
+        ).call(context, nextInvocation.event);
 
         await _client.postInvocationResponse(result);
       } catch (error, stackTrace) {
