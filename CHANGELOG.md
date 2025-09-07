@@ -1,5 +1,19 @@
 # Release Note
 
+## 1.0.1
+
+### Bug Fixes
+- **RuntimeContext**: Fixed null check operator error when AWS Lambda environment variables are missing
+  - Replaced null assertion operators (`!`) with proper error handling in `RuntimeContext.fromNextInvocation`
+  - Added clear error messages when required environment variables are not set
+  - Added `RuntimeContext.forTesting` factory constructor for testing and local development with sensible defaults
+
+### Changes
+- `lib/src/runtime/context.dart`:
+  - Modified `fromNextInvocation` factory to use `getRequiredEnvVar` helper function
+  - Added descriptive error messages for missing environment variables
+  - Added new `forTesting` factory constructor with default values for all required fields
+
 ## 1.0.0
 
 - Support Dart 3.8.0.

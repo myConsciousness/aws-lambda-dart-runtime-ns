@@ -53,7 +53,7 @@ final class RuntimeContext {
       logGroupName: Platform.environment[_kAWSLambdaLogGroupName]!,
       logStreamName: Platform.environment[_kAWSLambdaLogStreamName]!,
       region: Platform.environment[_kAWSLambdaRegion]!,
-      executionEnv: Platform.environment[_kAWSLambdaExecutionEnv]!,
+      executionEnv: Platform.environment[_kAWSLambdaExecutionEnv],
       accessKey: Platform.environment[_kAWSLambdaAccessKey]!,
       secretAccessKey: Platform.environment[_kAWSLambdaSecretAccessKey]!,
       sessionToken: Platform.environment[_kAWSLambdaSessionToken]!,
@@ -89,7 +89,7 @@ final class RuntimeContext {
   final String region;
 
   /// The execution environment of the function.
-  final String executionEnv;
+  final String? executionEnv;
 
   /// Access key that is acquired via STS.
   final String accessKey;
